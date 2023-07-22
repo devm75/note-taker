@@ -7,7 +7,7 @@ import Logo from "@/components/ui/logo";
 
 export const metadata: Metadata = {
 	title: "SignIn",
-	description: "Note Taker SignIn",
+	description: "Note Taker SignIn Login",
 };
 
 const SignIn = () => {
