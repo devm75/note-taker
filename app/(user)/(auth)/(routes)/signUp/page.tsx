@@ -8,11 +8,13 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { AiFillGoogleCircle, AiFillGithub } from "react-icons/ai";
 import { BsFacebook } from "react-icons/bs";
+
 interface SignUpFormInputs {
 	userName: string;
 	password: string;
 	confirmPassword: string;
 	email: string;
+	errors:{}
 }
 
 const SignUp = () => {
@@ -20,10 +22,11 @@ const SignUp = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
+		watch,
 	} = useForm<SignUpFormInputs>();
 
 	const { executeRecaptcha } = useGoogleReCaptcha();
-
+	console.log(errors);
 	const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {
 		console.log(data);
 
@@ -55,12 +58,51 @@ const SignUp = () => {
 						{errorMessages.short}
 					</p>
 				)}
-				<Input className="bg-white" type="password" placeholder="Password" />
 				<Input
+					{...register("password", {
+						required: true,
+						minLength: 8,
+					})}
+					className="bg-white"
+					type="password"
+					placeholder="Password"
+				/>
+				{errors.password?.type === "required" && (
+					<p className="text-xs text-rose-700" role="alert">
+						{errorMessages.required}
+					</p>
+				)}
+				{errors.password?.type === "minLength" && (
+					<p className="text-xs text-rose-700" role="alert">
+						{errorMessages.shortPassword}
+					</p>
+				)}
+
+				<Input
+					{...register("confirmPassword", {
+						required: true,
+						validate: (val: string) => {
+							if (watch("password") !== val) {
+								return errorMessages.passwordsNotMatch;
+							}
+						},
+					})}
 					className="bg-white"
 					type="password"
 					placeholder="Confirm Password"
 				/>
+			
+				{errors.confirmPassword?.type === "required" && (
+					<p className="text-xs text-rose-700" role="alert">
+						{errorMessages.required}
+					</p>
+				)}
+				{errors.confirmPassword?.type === "minLength" && (
+					<p className="text-xs text-rose-700" role="alert">
+						{errorMessages.shortPassword}
+					</p>
+				)}
+				
 				<Input className="bg-white" type="email" placeholder="E-mail address" />
 
 				<Button

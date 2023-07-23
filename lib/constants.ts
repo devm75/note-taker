@@ -9,7 +9,8 @@ export const errorMessages = {
 	required: "Required!",
 	short: "Too Short!",
 	invalid: "Invalid!",
-	shortPassword: "Password Must have atleast 8 digits",
+	shortPassword: "Password must be atleast 8 digits",
+	passwordsNotMatch: "Your Passwords don't match!",
 };
 
 export const keys = {
