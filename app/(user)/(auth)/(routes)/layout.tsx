@@ -34,8 +34,8 @@ export default function AuthLayout({
 				</span>
 			</div>
 			<div
-				className={cn("min-h-[calc(100vh-100px)]  xsm:pt-10 bg-slate-100", [
-					pathName == signUpPage ? "pt-0" : "pt-32",
+				className={cn("min-h-[calc(100vh-100px)]   bg-slate-100", [
+					pathName == signUpPage ? "pt-10" : "md:pt-32 xsm:pt-10" ,
 				])}
 			>
 				{children}
