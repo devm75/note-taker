@@ -1,9 +1,10 @@
 "use client";
 import Logo from "@/components/ui/logo";
 import { usePathname } from "next/navigation";
-import { constants } from "@/lib/constants";
+import { routes } from "@/lib/constants";
 import clsx from "clsx";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export default function AuthLayout({
 	children,
@@ -11,8 +12,8 @@ export default function AuthLayout({
 	children: React.ReactNode;
 }) {
 	const pathName = usePathname();
-	const signInPage = constants.auth.SIGNIN;
-	const signUpPage = constants.auth.SIGNUP;
+	const signInPage = routes.auth.SIGNIN;
+	const signUpPage = routes.auth.SIGNUP;
 
 	return (
 		<div className="mx-auto max-w-screen-3xl">
@@ -21,18 +22,22 @@ export default function AuthLayout({
 				NoteTaker
 				<span className="flex gap-10">
 					<Link href={signInPage}>
-						<span
-							className={clsx([pathName == signInPage && "text-red-300"])}
-						>
-							Login
+						<span className={clsx([pathName == signInPage && "text-red-300"])}>
+							SignIn
 						</span>
 					</Link>
 					<Link href={signUpPage}>
-						<span>SignUp</span>
+						<span className={clsx([pathName == signUpPage && "text-red-300"])}>
+							SignUp
+						</span>
 					</Link>
 				</span>
 			</div>
-			<div className="h-[calc(100vh-100px)] md:pt-48  xsm:pt-10 bg-slate-100">
+			<div
+				className={cn("min-h-[calc(100vh-100px)]  xsm:pt-10 bg-slate-100", [
+					pathName == signUpPage ? "pt-0" : "pt-32",
+				])}
+			>
 				{children}
 			</div>
 			<div className="flex items-center justify-center w-full h-10 text-white bg-slate-500">
