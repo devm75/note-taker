@@ -8,13 +8,14 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { AiFillGoogleCircle, AiFillGithub } from "react-icons/ai";
 import { BsFacebook } from "react-icons/bs";
+import { validateEmail } from "@/lib/utils";
 
 interface SignUpFormInputs {
 	userName: string;
 	password: string;
 	confirmPassword: string;
 	email: string;
-	errors:{}
+	errors: {};
 }
 
 const SignUp = () => {
@@ -22,11 +23,10 @@ const SignUp = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-		watch,
+		getValues,
 	} = useForm<SignUpFormInputs>();
 
 	const { executeRecaptcha } = useGoogleReCaptcha();
-	console.log(errors);
 	const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {
 		console.log(data);
 
@@ -35,6 +35,7 @@ const SignUp = () => {
 			console.log(token);
 		}
 	};
+
 	return (
 		<div className="flex flex-col justify-center max-w-md gap-8 p-8 mx-auto bg-white rounded h-fit">
 			<div className="flex flex-col items-center justify-center">
@@ -82,16 +83,19 @@ const SignUp = () => {
 					{...register("confirmPassword", {
 						required: true,
 						validate: (val: string) => {
-							if (watch("password") !== val) {
-								return errorMessages.passwordsNotMatch;
-							}
+							const { password } = getValues();
+							return password === val || errorMessages.passwordsNotMatch;
 						},
 					})}
 					className="bg-white"
 					type="password"
 					placeholder="Confirm Password"
 				/>
-			
+				{errors.confirmPassword?.type === "validate" && (
+					<p className="text-xs text-rose-700" role="alert">
+						{errors.confirmPassword.message}
+					</p>
+				)}
 				{errors.confirmPassword?.type === "required" && (
 					<p className="text-xs text-rose-700" role="alert">
 						{errorMessages.required}
@@ -102,8 +106,28 @@ const SignUp = () => {
 						{errorMessages.shortPassword}
 					</p>
 				)}
-				
-				<Input className="bg-white" type="email" placeholder="E-mail address" />
+
+				<Input
+					{...register("email", {
+						required: true,
+						validate: (val: string) => {
+							return validateEmail(val) || errorMessages.invalidEmail;
+						},
+					})}
+					className="bg-white"
+					type="email"
+					placeholder="E-mail address"
+				/>
+				{errors.email?.type === "validate" && (
+					<p className="text-xs text-rose-700" role="alert">
+						{errors.email.message}
+					</p>
+				)}
+				{errors.email?.type === "required" && (
+					<p className="text-xs text-rose-700" role="alert">
+						{errorMessages.required}
+					</p>
+				)}
 
 				<Button
 					variant="secondary"
