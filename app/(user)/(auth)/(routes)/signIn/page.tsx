@@ -20,11 +20,12 @@ const SignIn = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<SignInFormInputs>();
+	
 	const { executeRecaptcha } = useGoogleReCaptcha();
 
 	const onSubmit: SubmitHandler<SignInFormInputs> = async (data) => {
 		console.log(data);
-		
+
 		if (executeRecaptcha) {
 			const token = await executeRecaptcha();
 			console.log(token);
