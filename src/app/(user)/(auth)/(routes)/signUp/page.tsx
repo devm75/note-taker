@@ -1,7 +1,7 @@
 "use client";
-import { Input } from "@/src/components/ui/input";
-import { Button } from "@/src/components/ui/button";
-import Logo from "@/src/app/components/ui/logo";
+import { Input } from "@/src/components/FormElements/input";
+import { Button } from "@/src/components/FormElements/button";
+import Logo from "@/src/components/Logo";
 import Link from "next/link";
 import { errorMessages, routes } from "@/src/lib/constants";
 import { useForm, SubmitHandler } from "react-hook-form";

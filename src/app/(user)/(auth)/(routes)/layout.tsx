@@ -1,12 +1,16 @@
 "use client";
-import Logo from "@/src/app/components/ui/logo";
+import Logo from "@/src/components/Logo";
 import { usePathname } from "next/navigation";
 import { routes } from "@/src/lib/constants";
 import clsx from "clsx";
 import Link from "next/link";
-import { cn } from "@/src/app/lib/utils";
+import { cn } from "@/src/lib/utils";
 
-export default function AuthLayout({ children }: { children: React.ReactNode }) {
+export default function AuthLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const pathName = usePathname();
   const signInPage = routes.auth.SIGNIN;
   const signUpPage = routes.auth.SIGNUP;
@@ -37,7 +41,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         {children}
       </div>
       <div className="flex items-center justify-center w-full h-10 text-white bg-slate-500">
-        Copyright &#169; 2023 NoteTaker | Made with &#9829; in Punjab 🇮🇳
+        Copyright &#169; 2023 NoteTaker | Made with &#9829; in India 🇮🇳
       </div>
     </div>
   );

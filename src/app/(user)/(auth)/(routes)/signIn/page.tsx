@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { Input } from "@/src/components/ui/input";
-import { Button } from "@/src/components/ui/button";
-import Logo from "@/src/app/components/ui/logo";
+import { Input } from "@/src/components/FormElements/input";
+import { Button } from "@/src/components/FormElements/button";
+import Logo from "@/src/components/Logo";
 import { AiFillGoogleCircle, AiFillGithub } from "react-icons/ai";
 import { BsFacebook } from "react-icons/bs";
 import Link from "next/link";
