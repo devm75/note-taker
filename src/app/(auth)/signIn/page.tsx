@@ -1,59 +1,79 @@
 "use client";
+import React, { useState } from "react";
 import { Input } from "@/src/components/FormElements/input";
 import { Button } from "@/src/components/FormElements/button";
 import Logo from "@/src/components/Logo";
+import { AiFillGoogleCircle, AiFillGithub } from "react-icons/ai";
+import { BsFacebook } from "react-icons/bs";
 import Link from "next/link";
 import { errorMessages, routes } from "@/src/lib/constants";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
-import { AiFillGoogleCircle, AiFillGithub } from "react-icons/ai";
-import { BsFacebook } from "react-icons/bs";
-
-interface SignUpFormInputs {
-  userName: string;
-  password: string;
-  confirmPassword: string;
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { Loader } from "@/src/components/Loader";
+interface SignInFormInputs {
   email: string;
-  errors: {};
+  password: string;
 }
 
-const SignUp = () => {
+const SignIn = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
-  } = useForm<SignUpFormInputs>();
+  } = useForm<SignInFormInputs>();
 
-  const { executeRecaptcha } = useGoogleReCaptcha();
-  console.log(errors);
-  const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {
-    console.log(data);
+  // const { executeRecaptcha } = useGoogleReCaptcha();
 
-    if (executeRecaptcha) {
-      const token = await executeRecaptcha();
-      console.log(token);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const onSubmit: SubmitHandler<SignInFormInputs> = async (data) => {
+    console.log(data, "data");
+    // if (executeRecaptcha) {
+    //   const token = await executeRecaptcha();
+    //   console.log(token);
+    // }
+    setLoading(true);
+    const res = await signIn("credentials", {
+      email: data?.email,
+      password: data?.password,
+      redirect: false,
+    });
+    setLoading(false);
+    if (res?.error) {
+      console.error(res?.error);
+      toast.error(res?.error);
+    }
+    if (res?.ok) {
+      toast.success("Login Success");
+      router.push("/");
     }
   };
+
   return (
     <div className="flex flex-col justify-center max-w-md gap-8 p-8 mx-auto bg-white rounded h-fit">
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center gap-2">
         <Logo />
         <span className="text-slate-600">NoteTaker</span>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
         <Input
-          {...register("userName", { required: true, minLength: 3 })}
+          {...register("email", {
+            required: true,
+          })}
+          aria-invalid={errors.email ? "true" : "false"}
           className="bg-white "
           type="text"
-          placeholder="Username"
+          placeholder="Username or E-mail"
         />
-        {errors.userName?.type === "required" && (
+        {errors.email?.type === "required" && (
           <p className="text-xs text-rose-700" role="alert">
             {errorMessages.required}
           </p>
         )}
-        {errors.userName?.type === "minLength" && (
+        {errors.email?.type === "minLength" && (
           <p className="text-xs text-rose-700" role="alert">
             {errorMessages.short}
           </p>
@@ -72,53 +92,26 @@ const SignUp = () => {
             {errorMessages.required}
           </p>
         )}
-        {errors.password?.type === "minLength" && (
+        {errors?.password?.type === "minLength" && (
           <p className="text-xs text-rose-700" role="alert">
             {errorMessages.shortPassword}
           </p>
         )}
-
-        <Input
-          {...register("confirmPassword", {
-            required: true,
-            validate: (val: string) => {
-              if (watch("password") !== val) {
-                return errorMessages.passwordsNotMatch;
-              }
-            },
-          })}
-          className="bg-white"
-          type="password"
-          placeholder="Confirm Password"
-        />
-
-        {errors.confirmPassword?.type === "required" && (
-          <p className="text-xs text-rose-700" role="alert">
-            {errorMessages.required}
-          </p>
-        )}
-        {errors.confirmPassword?.type === "minLength" && (
-          <p className="text-xs text-rose-700" role="alert">
-            {errorMessages.shortPassword}
-          </p>
-        )}
-
-        <Input className="bg-white" type="email" placeholder="E-mail address" />
-
         <Button
+          type="submit"
           variant="secondary"
           className="text-white bg-slate-500 hover:bg-slate-400"
         >
-          Sign Up
+          {loading ? <Loader /> : "Sign In"}
         </Button>
       </form>
-      <div className="flex items-center justify-center gap-3">
-        <span className="inline-block text-sm text-slate-300">
-          Have an account?
+      <div className="flex justify-between">
+        <span className="inline-block hover:cursor-pointer text-slate-600">
+          Forgot Password?
         </span>
-        <Link href={routes.auth.SIGNIN}>
-          <span className="inline-block text-md hover:cursor-pointer text-slate-600">
-            Sign In
+        <Link href={routes.auth.SIGNUP}>
+          <span className="inline-block hover:cursor-pointer text-slate-600">
+            Sign Up
           </span>
         </Link>
       </div>
@@ -142,4 +135,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;

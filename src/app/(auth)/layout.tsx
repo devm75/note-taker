@@ -2,7 +2,6 @@
 import Logo from "@/src/components/Logo";
 import { usePathname } from "next/navigation";
 import { routes } from "@/src/lib/constants";
-import clsx from "clsx";
 import Link from "next/link";
 import { cn } from "@/src/lib/utils";
 
@@ -22,12 +21,12 @@ export default function AuthLayout({
         NoteTaker
         <span className="flex gap-10">
           <Link href={signInPage}>
-            <span className={clsx([pathName == signInPage && "text-red-300"])}>
+            <span className={cn([pathName == signInPage && "text-red-300"])}>
               SignIn
             </span>
           </Link>
           <Link href={signUpPage}>
-            <span className={clsx([pathName == signUpPage && "text-red-300"])}>
+            <span className={cn([pathName == signUpPage && "text-red-300"])}>
               SignUp
             </span>
           </Link>
