@@ -2,6 +2,7 @@
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Header } from "../components/Header";
 
 export default function Home() {
   const { status } = useSession();
@@ -35,7 +36,8 @@ export default function Home() {
     }
   };
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center">
+    <main>
+      <Header />
       <h1 className="text-xl">Home</h1>
       {showSession()}
     </main>

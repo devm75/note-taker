@@ -13,6 +13,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { Loader } from "@/src/components/Loader";
+import { Header } from "@/src/components/Header";
 interface SignInFormInputs {
   email: string;
   password: string;
@@ -54,10 +55,7 @@ const SignIn = () => {
 
   return (
     <div className="flex flex-col justify-center max-w-md gap-8 p-8 mx-auto bg-white rounded h-fit">
-      <div className="flex flex-col items-center justify-center gap-2">
-        <Logo />
-        <span className="text-slate-600">NoteTaker</span>
-      </div>
+      <Header />
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
         <Input
           {...register("email", {
