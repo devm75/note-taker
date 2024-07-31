@@ -1,11 +1,12 @@
-import { keys } from "@/src/lib/constants";
+"use client";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const inter = Inter({ subsets: ["latin"] });
 import { Provider } from "./provider";
+
+import { CustomLayout } from "./CustomLayout";
 
 export default function RootLayout({
   children,
@@ -18,8 +19,10 @@ export default function RootLayout({
         <body className={inter.className}>
           {/* <GoogleReCaptchaProvider reCaptchaKey={keys.recaptchaKey}> */}
           <ToastContainer />
-          {children}
-          {/* </GoogleReCaptchaProvider> */}
+          <CustomLayout>
+            {children}
+            {/* </GoogleReCaptchaProvider> */}
+          </CustomLayout>
         </body>
       </Provider>
     </html>

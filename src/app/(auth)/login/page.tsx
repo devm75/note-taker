@@ -55,7 +55,6 @@ const SignIn = () => {
 
   return (
     <div className="flex flex-col justify-center max-w-md gap-8 p-8 mx-auto bg-white rounded h-fit">
-      <Header />
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
         <Input
           {...register("email", {

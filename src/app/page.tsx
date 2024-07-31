@@ -35,9 +35,11 @@ export default function Home() {
       );
     }
   };
+  const session = showSession();
+  console.log(session, "session");
+  console.log(status, "status");
   return (
     <main>
-      <Header />
       <h1 className="text-xl">Home</h1>
       {showSession()}
     </main>
