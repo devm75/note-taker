@@ -2,6 +2,7 @@ import React from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { useSession } from "next-auth/react";
+import { CreateTodo } from "../components/CreateTodo";
 
 export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
   const { data: session, status } = useSession();
@@ -12,6 +13,7 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
       <div>
         <Header />
         {"Inside Dashboard"}
+        <CreateTodo userId={session?.user?.id} />
 
         {children}
         <Footer />

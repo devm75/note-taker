@@ -20,6 +20,7 @@ export const _register = async (values: any) => {
       email,
       password: hashedPassword,
     });
+
     const savedUser = await user.save();
   } catch (e) {
     console.log(e);

@@ -27,24 +27,27 @@ export const authOptions: NextAuthOptions = {
         );
 
         if (!passwordMatch) throw new Error("Wrong Password");
-        return user;
+        return { id: user._id, name: user.name, email: user.email };
       },
     }),
   ],
   session: {
     strategy: "jwt",
   },
-  secret: process.env.AUTH_SECRET as string,
   callbacks: {
     async jwt({ token, user, account, profile, isNewUser }: any) {
-      if (account) {
+      if (user) {
         token.accessToken = account?.access_token;
-        token.id = profile?.id;
+        token.id = user?.id;
       }
       return token;
     },
-    async session({ session, user, token }) {
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id as string;
+      }
       return session;
     },
   },
+  secret: process.env.AUTH_SECRET as string,
 };

@@ -1,5 +1,4 @@
-import { TodoDocument } from "../ts/interfaces/db_interfaces";
-import mongoose, { Schema, model, Document } from "mongoose";
+import mongoose, { Schema, model, Model, Document } from "mongoose";
 
 interface TodoInterface extends Document {
   title: string;
@@ -37,5 +36,6 @@ const todoSchema = new Schema(
   }
 );
 
-const Todo = mongoose?.models?.Todo || model<TodoDocument>("Todo", todoSchema);
+const Todo: Model<TodoInterface> =
+  mongoose?.models?.Todo || model<TodoInterface>("Todo", todoSchema);
 export default Todo;

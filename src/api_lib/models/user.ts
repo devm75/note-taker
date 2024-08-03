@@ -3,6 +3,7 @@ import { UserDocument } from "../ts/interfaces/db_interfaces";
 
 const UserSchema = new Schema<UserDocument>(
   {
+    id: String,
     email: {
       type: String,
       unique: true,
