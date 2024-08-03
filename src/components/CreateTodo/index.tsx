@@ -1,7 +1,10 @@
 import { createTodo } from "@/src/services";
 import React, { useState } from "react";
+import { AddTodoModal } from "../Modal";
 export const CreateTodo = ({ userId }: { userId: string }): React.ReactNode => {
   const [todoVal, setTodoVal] = useState("");
+
+  const [showModal, setShowModal] = useState(false);
 
   const handleChange = (e: any) => {
     setTodoVal(e.target.value);
@@ -14,9 +17,10 @@ export const CreateTodo = ({ userId }: { userId: string }): React.ReactNode => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" onChange={handleChange} />
-      <button type="submit">Create Todo</button>
-    </form>
+    <>
+      {/* <input type="text" onChange={handleChange} /> */}
+      <button onClick={() => setShowModal(true)}>Create Todo</button>
+      {showModal && <AddTodoModal />}
+    </>
   );
 };

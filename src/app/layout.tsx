@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const inter = Inter({ subsets: ["latin"] });
 import { Provider } from "./provider";
-import { CustomLayout } from "./CustomLayout";
+import { CustomLayout } from "../components/Layouts/CustomLayout";
 
 export default function RootLayout({
   children,

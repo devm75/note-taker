@@ -79,7 +79,7 @@ const SignUp = () => {
     <div className="flex flex-col justify-center max-w-md gap-8 p-8 mx-auto bg-white rounded h-fit">
       <div className="flex flex-col items-center justify-center">
         <Logo />
-        <span className="text-slate-600">NoteTaker</span>
+        <span className="text-slate-600">TodosKeep</span>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
         <Input

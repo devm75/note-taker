@@ -17,7 +17,6 @@ export const Header = () => {
     if (status === "authenticated") {
       return (
         <div>
-          <span className="inline-flex px-4">{`Welcome,${session?.user?.name}`}</span>
           <button
             className="text-red-300"
             onClick={() => {
@@ -53,8 +52,8 @@ export const Header = () => {
   };
 
   return (
-    <div className="flex items-center justify-between gap-20 px-10 font-mono text-2xl font-bold text-white bg-slate-500">
-      <Logo />
+    <div className="flex fixed p-4 left-0 right-0 top-0 items-center justify-between gap-20 px-10 font-mono text-2xl font-bold text-white bg-slate-500">
+      {/* <Logo /> */}
       TodosKeep
       <span className="flex gap-10">{showSession()}</span>
     </div>
