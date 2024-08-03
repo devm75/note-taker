@@ -55,7 +55,7 @@ export const Header = () => {
   return (
     <div className="flex items-center justify-between gap-20 px-10 font-mono text-2xl font-bold text-white bg-slate-500">
       <Logo />
-      NoteKeep
+      TodosKeep
       <span className="flex gap-10">{showSession()}</span>
     </div>
   );

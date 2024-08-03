@@ -1,37 +1,66 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
-    },
-
     screens: {
-      'xsm': '240px',
-      'sm': '640px',
-      // => @media (min-width: 640px) { ... }
+      mob: { max: "480px" },
+      tab: { min: "481px", max: "768px" },
+      "tab-high": { min: "769px", max: "1024px" },
+      responsive: { max: "1024px" },
+      web: { min: "1025px" },
+      "desk-low-res": { min: "1025px", max: "1366px" },
+      "desk-high-res": { min: "1367px", max: "1600px" },
+      "desk-hd-res": { min: "1601px" },
+      "full-hd": "1980px",
+    },
+    extend: {
+      colors: {
+        // 'light-primary': "#28A745",
+        // blue
+        "light-primary": "#378abd",
+        "light-secondary": "#FFFFFF",
+        // green
+        "light-primary-2": "#80cc28",
+        // gray
+        "light-primary-3": "#9370db",
+        // black
 
-      'md': '768px',
-      // => @media (min-width: 768px) { ... }
+        "light-primary-4": "#000000",
+        "light-primary-5": "#e6eaf8",
+        "light-primary-6": "d1e4dd",
+        "dark-primary": "#80cc28",
+        "dark-secondary": "#66FF99",
+        "dark-text-pri": "#E0E0E0",
+        "dark-text-sec": "#B3B3B3",
+        "light-text-pri": "#FFFFFF",
+        "light-text-sec": "#666666",
+      },
 
-      'lg': '1024px',
-      // => @media (min-width: 1024px) { ... }
-
-      'xl': '1280px',
-      // => @media (min-width: 1280px) { ... }
-
-      '2xl': '1536px',
-      // => @media (min-width: 1536px) { ... }
-      '3xl': '1920px',
+      height: {
+        "700px": "700px",
+      },
+      width: {
+        "1980px": "1980px",
+        "800px": "800px",
+        "600px": "600px",
+        "400px": "400px",
+        "720px": "720px",
+        "310px": "310px",
+        '520px': '520px'
+      },
+      zIndex: {
+        900: "900",
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
     },
   },
   plugins: [],
-}
+};
