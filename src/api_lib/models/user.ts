@@ -20,6 +20,7 @@ const UserSchema = new Schema<UserDocument>(
       type: String,
       required: [true, "Name is required"],
     },
+    todoList: [{ type: Schema.Types.ObjectId, ref: "Todo" }],
   },
   {
     timestamps: true,

@@ -4,8 +4,9 @@ import { Footer } from "../components/Footer";
 import { useSession } from "next-auth/react";
 
 export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
-  const { status } = useSession();
+  const { data: session, status } = useSession();
 
+  console.log(session, "session");
   if (status === "authenticated") {
     return (
       <div>

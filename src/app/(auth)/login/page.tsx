@@ -31,7 +31,6 @@ const SignIn = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const onSubmit: SubmitHandler<SignInFormInputs> = async (data) => {
-    console.log(data, "data");
     // if (executeRecaptcha) {
     //   const token = await executeRecaptcha();
     //   console.log(token);

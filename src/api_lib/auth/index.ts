@@ -18,7 +18,7 @@ export const authOptions: NextAuthOptions = {
         const user = await User.findOne({
           email: credentials?.email,
         }).select("+password");
-
+        console.log(user, "user found");
         if (!user) throw new Error("Wrong Email");
 
         const passwordMatch = await bcrypt.compare(
@@ -33,5 +33,18 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: "jwt",
+  },
+  secret: process.env.AUTH_SECRET as string,
+  callbacks: {
+    async jwt({ token, user, account, profile, isNewUser }: any) {
+      if (account) {
+        token.accessToken = account?.access_token;
+        token.id = profile?.id;
+      }
+      return token;
+    },
+    async session({ session, user, token }) {
+      return session;
+    },
   },
 };
