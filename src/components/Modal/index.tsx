@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import { Input } from "../FormElements/Input";
+import { Select } from "../FormElements/Select";
+import { constants } from "@/src/constants";
 
 export const AddTodoModal = () => {
+  const initialState = {
+    todoTitle: "",
+    todoDescription: "",
+    todoStatus: "",
+  };
+
+  const [todoState, setTodoState] = useState(initialState);
+
   return (
     <div
       className="relative z-10"
@@ -13,29 +24,25 @@ export const AddTodoModal = () => {
         aria-hidden="true"
       ></div>
 
-      <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-        <div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
+      <div className="fixed flex  items-center justify-center inset-0 z-10 w-screen overflow-y-auto">
+        <div className=" p-4 text-center sm:items-center overflow-auto sm:p-0">
           <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-            <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+            <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 min-h-480">
               <div className="sm:flex sm:items-start">
-                <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                  <h3
-                    className="text-base font-semibold leading-6 text-gray-900"
-                    id="modal-title"
-                  >
-                    Deactivate account
-                  </h3>
-                  <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Are you sure you want to deactivate your account? All of
-                      your data will be permanently removed. This action cannot
-                      be undone.
-                    </p>
-                  </div>
+                <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left flex flex-col gap-6  min-w-480">
+                  <Input type="text" placeholder="Todo Title" />
+                  <Input type="text" placeholder="Todo Description" />
+                  <Select
+                    placeholder="Todo Status"
+                    options={constants.todoStatus}
+                    onSelectOption={() => {}}
+                  />
+
+                  <div className="mt-2"></div>
                 </div>
               </div>
             </div>
-            <div className="bg-gray-50 px-4 py-3 flex gap-2 h-fit sm:flex sm:flex-row-reverse sm:px-6">
+            <div className="bg-gray-50 px-4 py-3 flex gap-2 h-fit flex-row-reverse sm:flex sm:flex-row-reverse sm:px-6">
               <button
                 type="button"
                 className="inline-flex w-fit min-w-100 justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"

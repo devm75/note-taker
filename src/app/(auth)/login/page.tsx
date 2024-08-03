@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { Input } from "@/src/components/FormElements/input";
-import { Button } from "@/src/components/FormElements/button";
+import { Input } from "@/src/components/FormElements/Input";
+import { Button } from "@/src/components/FormElements/Button";
 import Logo from "@/src/components/Logo";
 import { AiFillGoogleCircle, AiFillGithub } from "react-icons/ai";
 import { BsFacebook } from "react-icons/bs";
@@ -53,8 +53,11 @@ const SignIn = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center max-w-md gap-8 p-8 mx-auto bg-white rounded h-fit">
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+    <div className="flex flex-col py-16 justify-center items-center max-w-md gap-8 p-8 mx-auto bg-white rounded-md h-fit min-w-480">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-5 w-full"
+      >
         <Input
           {...register("email", {
             required: true,

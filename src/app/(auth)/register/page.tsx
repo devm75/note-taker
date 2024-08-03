@@ -1,6 +1,6 @@
 "use client";
-import { Input } from "@/src/components/FormElements/input";
-import { Button } from "@/src/components/FormElements/button";
+import { Input } from "@/src/components/FormElements/Input";
+import { Button } from "@/src/components/FormElements/Button";
 import Logo from "@/src/components/Logo";
 import Link from "next/link";
 import { errorMessages, routes } from "@/src/lib/constants";
