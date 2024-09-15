@@ -76,17 +76,14 @@ const SignUp = () => {
     // }
   };
   return (
-    <div className="flex flex-col justify-center max-w-md gap-8 p-8 mx-auto rounded h-fit">
-      <div className="flex flex-col items-center justify-center">
-        <Logo />
-        <span className="text-slate-600">TodosKeep</span>
-      </div>
+    <div className="flex flex-col justify-center max-w-md bg-white gap-8 p-8 mx-auto rounded h-fit min-w-480">
+      <div className="flex flex-col items-center justify-center"></div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
         <Input
           {...register("name")}
           className="bg-white "
           type="text"
-          placeholder="userName"
+          placeholder="username"
         />
         {errors?.name && (
           <p className="text-xs text-rose-700" role="alert">
