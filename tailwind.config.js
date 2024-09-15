@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     screens: {
       mob: { max: "480px" },
-      tab: { min: "481px", max: "768px" },
+      tab: { max: "768px" },
+      "tab-nd-above": { min: "769px" },
       "tab-high": { min: "769px", max: "1024px" },
       responsive: { max: "1024px" },
       web: { min: "1025px" },
@@ -38,6 +39,7 @@ module.exports = {
         "dark-text-sec": "#B3B3B3",
         "light-text-pri": "#FFFFFF",
         "light-text-sec": "#666666",
+        'btn-primary': "#3261cb"
       },
 
       height: {

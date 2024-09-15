@@ -17,7 +17,7 @@ export default function AuthLayout({
     <div className="mx-auto max-w-screen-3xl">
       <div
         className={cn(
-          "min-h-[calc(100vh-168px)]  mt-64 bg-slate-100 flex justify-center items-center",
+          "min-h-[calc(100vh-168px)]  mt-64 flex justify-center items-center",
           [pathName == signUpPage ? "pt-10" : "md:pt-32 xsm:pt-10"]
         )}
       >

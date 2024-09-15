@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 const inter = Inter({ subsets: ["latin"] });
 import { Provider } from "./provider";
 import { CustomLayout } from "../components/Layouts/CustomLayout";
+import { cn } from "../lib/utils";
 
 export default function RootLayout({
   children,
@@ -15,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Provider>
-        <body className={inter.className}>
+        <body className={cn([inter.className], "bg-dark-primary")}>
           {/* <GoogleReCaptchaProvider reCaptchaKey={keys.recaptchaKey}> */}
           <ToastContainer />
           <CustomLayout>

@@ -7,7 +7,6 @@ import { HeroSection } from "../components/LandingHeroSection";
 
 export default function Home() {
   const { data: session, status } = useSession();
-  console.log(session, status, 'useSession Hook Returns:');
 
   return (
     <main>
