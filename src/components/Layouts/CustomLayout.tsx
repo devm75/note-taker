@@ -9,11 +9,11 @@ export const CustomLayout = ({ children }: { children: React.ReactNode }) => {
 
   if (status === "authenticated") {
     return (
-      <div>
+      <>
         <Header />
         <SidebarLayout>{children}</SidebarLayout>
         <Footer />
-      </div>
+      </>
     );
   } else {
     return (

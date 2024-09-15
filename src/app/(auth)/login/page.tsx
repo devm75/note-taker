@@ -50,7 +50,7 @@ const SignIn = () => {
     }
     if (res?.ok) {
       toast.success("Login Success");
-      router.push("/");
+      router.push("/dashboard");
     }
   };
 

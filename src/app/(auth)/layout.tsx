@@ -4,6 +4,7 @@ import { routes } from "@/src/lib/constants";
 import { cn } from "@/src/lib/utils";
 import { Header } from "@/src/components/Header";
 import { Footer } from "@/src/components/Footer";
+import { useSession } from "next-auth/react";
 
 export default function AuthLayout({
   children,
@@ -12,6 +13,8 @@ export default function AuthLayout({
 }) {
   const pathName = usePathname();
   const signUpPage = routes.auth.SIGNUP;
+
+  const { status } = useSession();
 
   return (
     <div className="mx-auto max-w-screen-3xl">
