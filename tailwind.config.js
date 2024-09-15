@@ -32,7 +32,7 @@ module.exports = {
         "light-primary-4": "#000000",
         "light-primary-5": "#e6eaf8",
         "light-primary-6": "d1e4dd",
-        "dark-primary": "#80cc28",
+        "dark-primary": "#202123",
         "dark-secondary": "#66FF99",
         "dark-text-pri": "#E0E0E0",
         "dark-text-sec": "#B3B3B3",

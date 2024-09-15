@@ -4,6 +4,9 @@ export const routes = {
     SIGNUP: "/register",
   },
   HOME: "/",
+  BLOG: "/blogs",
+  CONTACT: "/contact-us",
+  HELP: "/help",
 };
 
 export const errorMessages = {
