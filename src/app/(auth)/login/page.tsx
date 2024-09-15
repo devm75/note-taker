@@ -28,6 +28,8 @@ const SignIn = () => {
 
   // const { executeRecaptcha } = useGoogleReCaptcha();
 
+  console.log(process.env.NEXT_PUBLIC_MONGODB_URI);
+
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const onSubmit: SubmitHandler<SignInFormInputs> = async (data) => {
@@ -53,7 +55,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="flex flex-col py-16 justify-center items-center max-w-md gap-8 p-8 mx-auto bg-white rounded-md h-fit min-w-480">
+    <div className="flex flex-col py-16 justify-center items-center max-w-sm gap-8 p-8 mx-auto bg-white rounded-md h-fit ">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-5 w-full"

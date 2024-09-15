@@ -65,10 +65,10 @@ const SignUp = () => {
     });
 
     if (response?.error) {
-      toast.error(response?.error);
+      toast.error(response?.error as string);
     } else {
       toast.success("User Create SuccessFully!");
-      router.push("/signIn");
+      router.push("/login");
     }
     // if (executeRecaptcha) {
     //   const token = await executeRecaptcha();
@@ -76,7 +76,7 @@ const SignUp = () => {
     // }
   };
   return (
-    <div className="flex flex-col justify-center max-w-md bg-white gap-8 p-8 mx-auto rounded h-fit min-w-480">
+    <div className="flex flex-col justify-center max-w-sm bg-white gap-8 p-8 mx-auto rounded h-fit ">
       <div className="flex flex-col items-center justify-center"></div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
         <Input

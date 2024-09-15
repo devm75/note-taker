@@ -1,5 +1,5 @@
 import mongoose, { Document } from "mongoose";
-export interface UserDocument extends Document {
+export interface UserInterface extends Document {
   _id: string;
   email: string;
   password: string;
@@ -8,13 +8,13 @@ export interface UserDocument extends Document {
   image: string;
   createdAt: Date;
   updatedAt: Date;
-  todoList: mongoose.Types.ObjectId[];
+  notes: mongoose.Types.ObjectId[];
 }
 
-export interface TodoDocument {
-  title: string;
-  description?: string;
-  status: "pending" | "in progress" | "completed";
-  dueDate: Date;
+export interface NoteInterface extends Document {
+  content: string;
+  tags?: string[];
   user: mongoose.Types.ObjectId;
+  favourite: boolean;
+  timestamps: boolean;
 }
